@@ -1,0 +1,27 @@
+name: Foo
+
+on:
+  workflow_dispatch:
+    inputs:
+      val:
+        description: Value
+        required: true
+        default: some-value
+
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set date
+        id: set-date
+        run: |
+          echo "::set-output name=date::$(date +%s)"
+
+      - name: Trigger bar
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ github.token }}
+          event-type: bar-trigger
+          client-payload: '{"date": "${{ steps.set-date.outputs.date }}", "val": "${{ github.event.inputs.val }}"}'
