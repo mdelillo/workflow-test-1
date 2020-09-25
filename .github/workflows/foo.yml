@@ -42,6 +42,8 @@ jobs:
       - name: Trigger bar
         run: |
           curl \
+            -v \
+            -f \
             -H "Accept: application/vnd.github.everest-preview+json" \
             -H "Authorization: token ${{ github.token }}" \
             -X POST \
