@@ -45,7 +45,7 @@ jobs:
             -v \
             -f \
             -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ github.token }}" \
+            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
             -X POST \
             -d "{\"event_type\": \"bar-trigger\",
                  \"client_payload\": {
