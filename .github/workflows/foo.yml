@@ -44,7 +44,7 @@ jobs:
           curl \
             -v \
             -f \
-            -H "Accept: application/vnd.github.everest-preview+json" \
+            -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ github.token }}" \
             -X POST \
             -d "{\"event_type\": \"bar-trigger\",
