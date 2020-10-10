@@ -19,3 +19,31 @@ jobs:
           echo "ref: ${{ github.ref }}"
           echo "date: ${{ github.event.client_payload.date}}"
           echo "val: ${{ github.event.client_payload.val}}"
+
+      - name: Trigger baz
+        run: |
+          curl \
+            -v \
+            -f \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            -X POST \
+            -d "{\"event_type\": \"baz-trigger\",
+                 \"client_payload\": {
+                   \"date\": \"$(date +%s)\",
+                   \"val\": \"${{ github.event.inputs.val }}\"}}" \
+            "https://api.github.com/repos/mdelillo/workflow-test-2/dispatches"
+
+      - name: Trigger qyx
+        run: |
+          curl \
+            -v \
+            -f \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+            -X POST \
+            -d "{\"event_type\": \"qyx-trigger\",
+                 \"client_payload\": {
+                   \"date\": \"$(date +%s)\",
+                   \"val\": \"${{ github.event.inputs.val }}\"}}" \
+            "https://api.github.com/repos/mdelillo/workflow-test-2/dispatches"
