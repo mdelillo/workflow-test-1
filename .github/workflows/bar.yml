@@ -34,7 +34,7 @@ jobs:
                    \"val\": \"${{ github.event.inputs.val }}\"}}" \
             "https://api.github.com/repos/mdelillo/workflow-test-2/dispatches"
 
-      - name: Trigger qyx
+      - name: Trigger qux
         run: |
           curl \
             -v \
@@ -42,7 +42,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
             -X POST \
-            -d "{\"event_type\": \"qyx-trigger\",
+            -d "{\"event_type\": \"qux-trigger\",
                  \"client_payload\": {
                    \"date\": \"$(date +%s)\",
                    \"val\": \"${{ github.event.inputs.val }}\"}}" \
